@@ -1,0 +1,18 @@
+<div>
+  <label [for]="label">{{ label }}</label>
+  <input
+    [id]="label"
+    class="form-select custom-select"
+    [placeholder]="placeholder"
+    [value]="selectedName"
+    (click)="isOpen ? null : openDropdown()"
+  />
+
+  <ul *ngIf="isOpen" class="custom-select-dropdown">
+    <ol *ngFor="let option of options" class="custom-option">
+      <button (click)="updateSelected(option.id)">
+        {{ option.name }}
+      </button>
+    </ol>
+  </ul>
+</div>

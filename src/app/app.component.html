@@ -3,10 +3,11 @@
 </div>
 <div class="form-group">
   <form [formGroup]="formValues" autocomplete="off">
-    <custom-select-1 [options]="options" [placeholder]="'Something'" formControlName="value1" (outValueChange)="valueUpdated('value1', $event)"></custom-select-1>
+    <!-- <custom-select-1 [options]="options1" [placeholder]="'Something'" formControlName="value1" (outValueChange)="valueUpdated('value1', $event)"></custom-select-1> -->
+    <custom-select-2 [label]="'test'" [options]="options2" [placeholder]="'test'" formControlName="value2" [selectedId]="value2.value"></custom-select-2>
   </form>
 
   <div>
-    Value is {{value1.value}}
+    {{ formValues.value | json }}
   </div>
 </div>
