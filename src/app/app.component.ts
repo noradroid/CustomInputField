@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { DataDTO, DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,24 +10,25 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 export class AppComponent implements OnInit {
   title = 'CustomInputField';
   options1 = [1, 2, 3];
-  options2 = [
-    { id: 1, name: 'Value 1' },
-    { id: 2, name: 'Value 2' },
-    { id: 3, name: 'Value 3' },
-  ];
+  options2!: DataDTO[];
   formValues!: FormGroup;
   initialValue2 = {
     id: 3,
     name: 'Value 3',
   };
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.formValues = this.formBuilder.group({
-      value1: [''],
-      value2: [this.initialValue2.id],
+    this.dataService.getData().subscribe(data => {
+      this.options2 = data;
     });
+    this.dataService.getCurrent().subscribe(current => {
+      this.formValues = this.formBuilder.group({
+        value1: [''],
+        value2: [current.id],
+      });
+    })
   }
 
   get value1(): AbstractControl {

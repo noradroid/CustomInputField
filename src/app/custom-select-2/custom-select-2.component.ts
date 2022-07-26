@@ -26,7 +26,7 @@ export class CustomSelect2Component implements ControlValueAccessor, OnInit {
 
   ngOnInit(): void {
     console.log(this.selectedId);
-    this.selectedName = this.selectedId;
+    this.selectedName = this.options.find(op => op.id === this.selectedId)?.name;
   }
 
   writeValue(id: number): void {
