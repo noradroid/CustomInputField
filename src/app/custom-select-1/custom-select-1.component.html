@@ -1,0 +1,16 @@
+<div>
+  <input
+    [(ngModel)]="value"
+    (click)="isOpen ? null : openDropdownBox()"
+    [placeholder]="placeholder"
+    class="form-select custom-select"
+    required
+    readonly
+  />
+
+  <ul *ngIf="isOpen" class="custom-select-dropdown">
+    <li *ngFor="let option of options" class="custom-option">
+      <button (click)="updateValue(option)">{{ option }}</button>
+    </li>
+  </ul>
+</div>
